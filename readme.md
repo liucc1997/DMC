@@ -17,7 +17,7 @@
 
 2. [wine-reviews.html](/DM1_wine-reviews.html)
 
-   [wine-reviews.pdf](/DM1_wine-reviews.html)
+   [wine-reviews.pdf](/DM1_wine-reviews.pdf)
   
 ### 说明
 - DM\_1\_\*.ipynb 文件对应两个数据集分析处理的Jupyter Notebook文档
