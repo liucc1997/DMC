@@ -23,6 +23,6 @@
 
     data/wine-reviews/
 
-    data/oakland-crime-statistics-2011-to-2016
-    
+    data/oakland-crime-statistics-2011-to-2016/
+
 	数据集需要手动导入
