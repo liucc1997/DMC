@@ -12,10 +12,12 @@
 
 ### 分析过程报告
 1. [oakland-crime-statistics-2011-to-2016.html](/DM_1_oakland-crime-statistics-2011-to-2016.html)
-[oakland-crime-statistics-2011-to-2016.pdf](/DM_1_oakland-crime-statistics-2011-to-2016.pdf)
+
+   [oakland-crime-statistics-2011-to-2016.pdf](/DM_1_oakland-crime-statistics-2011-to-2016.pdf)
 
 2. [wine-reviews.html](/DM1_wine-reviews.html)
-  [wine-reviews.pdf](/DM1_wine-reviews.html)
+
+   [wine-reviews.pdf](/DM1_wine-reviews.html)
   
 ### 说明
 - DM\_1\_\*.ipynb 文件对应两个数据集分析处理的Jupyter Notebook文档
