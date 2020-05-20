@@ -11,6 +11,9 @@
 [Jupyter notebook 项目文件](https://github.com/liucc1997/DMC/blob/master/assignment2/wine-reviews-analysis.ipynb)
 
 [wine-reviews-analysis.html](https://github.com/liucc1997/DMC/blob/master/assignment2/wine-reviews-analysis.html)
+
+[wine-reviews-analysis.pdf](https://github.com/liucc1997/DMC/blob/master/assignment2/wine-reviews-analysis.pdf)
+
   
 ### 说明
 .ipynb 中访问数据集目录为：
