@@ -13147,7 +13147,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[38]:</div>
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib</span>
@@ -13168,7 +13168,7 @@ div#notebook {
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>首先需要对数据集中的不同的属性进行处理</p>
 <ol>
-<li>数据集中第一个属性未命名，是评论的序号，是唯一的，desprition属性是对于葡萄酒的自然语言描述，也是唯一值，二者在分析过程中不做考虑。</li>
+<li>数据集中第一个属性未命名，是评论的序号，是唯一的，description属性是对于葡萄酒的自然语言描述，也是唯一值，二者在分析过程中不做考虑。</li>
 </ol>
 
 </div>
@@ -13186,7 +13186,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[39]:</div>
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#根据空值的分布，定义一个从designation到country的转换字典</span>
@@ -13222,7 +13222,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[65]:</div>
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">points_discretization</span><span class="p">(</span><span class="n">value</span><span class="p">):</span>
@@ -13243,14 +13243,24 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>最后选取的属性包括designation、country、price、points，在之后的找出频繁模式调用mlxtend库来实现，因此还需要将数据处理成相应的格式。</p>
+<ol>
+<li>variety、winery、designation三个标称属性聚类数目过多（分别达到了632、14810、30622项），出于计算复杂度的考虑，在初步分析之后，单独选取选取variety中出现频数大于4000和winery中出现频数大于200的非空聚类进行分析。</li>
+</ol>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>初步分析过程中选取的属性包括designation、country、price、points，在之后的找出频繁模式调用mlxtend库来实现，因此还需要将数据处理成相应的格式。</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[95]:</div>
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">data_15k</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">path_15k</span><span class="p">)</span>
@@ -13260,7 +13270,6 @@ div#notebook {
 
 <span class="c1">#过滤属性</span>
 <span class="n">data_15k</span> <span class="o">=</span> <span class="n">data_15k</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s1">&#39;Unnamed: 0&#39;</span><span class="p">,</span><span class="s1">&#39;description&#39;</span><span class="p">,</span><span class="s1">&#39;province&#39;</span><span class="p">,</span><span class="s1">&#39;region_1&#39;</span><span class="p">,</span><span class="s1">&#39;region_2&#39;</span><span class="p">,</span><span class="s1">&#39;variety&#39;</span><span class="p">,</span><span class="s1">&#39;winery&#39;</span><span class="p">,</span><span class="s1">&#39;designation&#39;</span><span class="p">],</span><span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
-<span class="c1">#data_15k[&#39;country&#39;].value_counts(dropna = False)</span>
 </pre></div>
 
     </div>
@@ -13270,7 +13279,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[96]:</div>
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#离散化处理</span>
@@ -13285,7 +13294,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[109]:</div>
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#dataframe转换为列表</span>
@@ -13301,7 +13310,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[110]:</div>
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#TransactionEncoder转换</span>
@@ -13333,11 +13342,11 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[145]:</div>
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">mlxtend.frequent_patterns</span> <span class="kn">import</span> <span class="n">apriori</span>
-<span class="n">result</span> <span class="o">=</span> <span class="n">apriori</span><span class="p">(</span><span class="n">new_df</span><span class="p">,</span> <span class="n">min_support</span><span class="o">=</span><span class="mf">0.03</span><span class="p">,</span> <span class="n">use_colnames</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">max_len</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s1">&#39;support&#39;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>	
+<span class="n">result</span> <span class="o">=</span> <span class="n">apriori</span><span class="p">(</span><span class="n">new_df</span><span class="p">,</span> <span class="n">min_support</span><span class="o">=</span><span class="mf">0.03</span><span class="p">,</span> <span class="n">use_colnames</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">max_len</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s1">&#39;support&#39;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -13347,7 +13356,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[147]:</div>
+<div class="prompt input_prompt">In&nbsp;[9]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
@@ -13375,7 +13384,7 @@ div#notebook {
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[147]:</div>
+    <div class="prompt output_prompt">Out[9]:</div>
 
 
 
@@ -13431,12 +13440,12 @@ div#notebook {
     <tr>
       <th>37</th>
       <td>0.201034</td>
-      <td>(price-1, points-17)</td>
+      <td>(points-17, price-1)</td>
     </tr>
     <tr>
       <th>29</th>
       <td>0.199788</td>
-      <td>(points-17, US)</td>
+      <td>(US, points-17)</td>
     </tr>
     <tr>
       <th>4</th>
@@ -13461,7 +13470,7 @@ div#notebook {
     <tr>
       <th>30</th>
       <td>0.128748</td>
-      <td>(points-18, US)</td>
+      <td>(US, points-18)</td>
     </tr>
     <tr>
       <th>15</th>
@@ -13476,12 +13485,12 @@ div#notebook {
     <tr>
       <th>32</th>
       <td>0.106460</td>
-      <td>(price-2, US)</td>
+      <td>(US, price-2)</td>
     </tr>
     <tr>
       <th>31</th>
       <td>0.101617</td>
-      <td>(price-1, US)</td>
+      <td>(US, price-1)</td>
     </tr>
     <tr>
       <th>23</th>
@@ -13496,12 +13505,12 @@ div#notebook {
     <tr>
       <th>35</th>
       <td>0.079454</td>
-      <td>(points-16, price-1)</td>
+      <td>(price-1, points-16)</td>
     </tr>
     <tr>
       <th>33</th>
       <td>0.076784</td>
-      <td>(price-3, US)</td>
+      <td>(US, price-3)</td>
     </tr>
   </tbody>
 </table>
@@ -13531,10 +13540,10 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[229]:</div>
+<div class="prompt input_prompt">In&nbsp;[10]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">mlxtend.frequent_patterns</span> <span class="kn">import</span> <span class="n">association_rules</span>	
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">mlxtend.frequent_patterns</span> <span class="kn">import</span> <span class="n">association_rules</span>
 <span class="n">rules</span> <span class="o">=</span>  <span class="n">association_rules</span><span class="p">(</span><span class="n">result</span><span class="p">,</span><span class="n">metric</span> <span class="o">=</span><span class="s1">&#39;confidence&#39;</span><span class="p">,</span><span class="n">min_threshold</span> <span class="o">=</span> <span class="mf">0.4</span><span class="p">)</span>
 <span class="n">rules</span> <span class="o">=</span> <span class="n">rules</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s1">&#39;leverage&#39;</span><span class="p">,</span><span class="s1">&#39;conviction&#39;</span><span class="p">],</span><span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">rules</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
@@ -13562,7 +13571,7 @@ div#notebook {
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[229]:</div>
+    <div class="prompt output_prompt">Out[10]:</div>
 
 
 
@@ -13707,6 +13716,16 @@ div#notebook {
     </tr>
     <tr>
       <th>11</th>
+      <td>(US, price-2)</td>
+      <td>(points-17)</td>
+      <td>0.106460</td>
+      <td>0.526887</td>
+      <td>0.060757</td>
+      <td>0.570700</td>
+      <td>1.083154</td>
+    </tr>
+    <tr>
+      <th>12</th>
       <td>(price-2, points-17)</td>
       <td>(US)</td>
       <td>0.131604</td>
@@ -13716,18 +13735,8 @@ div#notebook {
       <td>1.116682</td>
     </tr>
     <tr>
-      <th>12</th>
-      <td>(price-2, US)</td>
-      <td>(points-17)</td>
-      <td>0.106460</td>
-      <td>0.526887</td>
-      <td>0.060757</td>
-      <td>0.570700</td>
-      <td>1.083154</td>
-    </tr>
-    <tr>
       <th>13</th>
-      <td>(price-1, US)</td>
+      <td>(US, price-1)</td>
       <td>(points-17)</td>
       <td>0.101617</td>
       <td>0.526887</td>
@@ -13797,17 +13806,7 @@ div#notebook {
     </tr>
     <tr>
       <th>20</th>
-      <td>(price-3, points-17)</td>
-      <td>(US)</td>
-      <td>0.062327</td>
-      <td>0.413423</td>
-      <td>0.038064</td>
-      <td>0.610715</td>
-      <td>1.477215</td>
-    </tr>
-    <tr>
-      <th>21</th>
-      <td>(price-3, US)</td>
+      <td>(US, price-3)</td>
       <td>(points-17)</td>
       <td>0.076784</td>
       <td>0.526887</td>
@@ -13816,24 +13815,34 @@ div#notebook {
       <td>0.940864</td>
     </tr>
     <tr>
-      <th>22</th>
-      <td>(points-16, price-1)</td>
+      <th>21</th>
+      <td>(points-17, price-3)</td>
       <td>(US)</td>
-      <td>0.079454</td>
+      <td>0.062327</td>
       <td>0.413423</td>
-      <td>0.033936</td>
-      <td>0.427118</td>
-      <td>1.033125</td>
+      <td>0.038064</td>
+      <td>0.610715</td>
+      <td>1.477215</td>
     </tr>
     <tr>
-      <th>23</th>
-      <td>(points-16, US)</td>
+      <th>22</th>
+      <td>(US, points-16)</td>
       <td>(price-1)</td>
       <td>0.076048</td>
       <td>0.303419</td>
       <td>0.033936</td>
       <td>0.446245</td>
       <td>1.470723</td>
+    </tr>
+    <tr>
+      <th>23</th>
+      <td>(price-1, points-16)</td>
+      <td>(US)</td>
+      <td>0.079454</td>
+      <td>0.413423</td>
+      <td>0.033936</td>
+      <td>0.427118</td>
+      <td>1.033125</td>
     </tr>
     <tr>
       <th>24</th>
@@ -13896,7 +13905,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[195]:</div>
+<div class="prompt input_prompt">In&nbsp;[11]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">rules</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
@@ -13931,19 +13940,19 @@ div#notebook {
 (&#39;points-16&#39;,) ⇒ (&#39;US&#39;,) (suupport = 0.076048, confidence = 0.494805 )
 (&#39;France&#39;,) ⇒ (&#39;points-17&#39;,) (suupport = 0.066998, confidence = 0.479287 )
 (&#39;price-3&#39;,) ⇒ (&#39;points-17&#39;,) (suupport = 0.062327, confidence = 0.500399 )
+(&#39;US&#39;, &#39;price-2&#39;) ⇒ (&#39;points-17&#39;,) (suupport = 0.060757, confidence = 0.570700 )
 (&#39;price-2&#39;, &#39;points-17&#39;) ⇒ (&#39;US&#39;,) (suupport = 0.060757, confidence = 0.461662 )
-(&#39;price-2&#39;, &#39;US&#39;) ⇒ (&#39;points-17&#39;,) (suupport = 0.060757, confidence = 0.570700 )
-(&#39;price-1&#39;, &#39;US&#39;) ⇒ (&#39;points-17&#39;,) (suupport = 0.058424, confidence = 0.574949 )
+(&#39;US&#39;, &#39;price-1&#39;) ⇒ (&#39;points-17&#39;,) (suupport = 0.058424, confidence = 0.574949 )
 (&#39;price-10&#39;,) ⇒ (&#39;points-18&#39;,) (suupport = 0.051898, confidence = 0.439365 )
 (&#39;price-3&#39;,) ⇒ (&#39;points-18&#39;,) (suupport = 0.049990, confidence = 0.401351 )
 (&#39;price-10&#39;,) ⇒ (&#39;France&#39;,) (suupport = 0.049930, confidence = 0.422706 )
 (&#39;price-4&#39;,) ⇒ (&#39;US&#39;,) (suupport = 0.049692, confidence = 0.599856 )
 (&#39;price-10&#39;,) ⇒ (&#39;points-17&#39;,) (suupport = 0.049102, confidence = 0.415694 )
 (&#39;price-4&#39;,) ⇒ (&#39;points-18&#39;,) (suupport = 0.043855, confidence = 0.529393 )
-(&#39;price-3&#39;, &#39;points-17&#39;) ⇒ (&#39;US&#39;,) (suupport = 0.038064, confidence = 0.610715 )
-(&#39;price-3&#39;, &#39;US&#39;) ⇒ (&#39;points-17&#39;,) (suupport = 0.038064, confidence = 0.495729 )
-(&#39;points-16&#39;, &#39;price-1&#39;) ⇒ (&#39;US&#39;,) (suupport = 0.033936, confidence = 0.427118 )
-(&#39;points-16&#39;, &#39;US&#39;) ⇒ (&#39;price-1&#39;,) (suupport = 0.033936, confidence = 0.446245 )
+(&#39;US&#39;, &#39;price-3&#39;) ⇒ (&#39;points-17&#39;,) (suupport = 0.038064, confidence = 0.495729 )
+(&#39;points-17&#39;, &#39;price-3&#39;) ⇒ (&#39;US&#39;,) (suupport = 0.038064, confidence = 0.610715 )
+(&#39;US&#39;, &#39;points-16&#39;) ⇒ (&#39;price-1&#39;,) (suupport = 0.033936, confidence = 0.446245 )
+(&#39;price-1&#39;, &#39;points-16&#39;) ⇒ (&#39;US&#39;,) (suupport = 0.033936, confidence = 0.427118 )
 (&#39;Italy&#39;, &#39;price-1&#39;) ⇒ (&#39;points-17&#39;,) (suupport = 0.033426, confidence = 0.847899 )
 (&#39;price-4&#39;,) ⇒ (&#39;points-17&#39;,) (suupport = 0.033380, confidence = 0.402943 )
 (&#39;Spain&#39;,) ⇒ (&#39;points-17&#39;,) (suupport = 0.030504, confidence = 0.556846 )
@@ -13973,7 +13982,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[234]:</div>
+<div class="prompt input_prompt">In&nbsp;[12]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">allconf</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
@@ -13995,7 +14004,7 @@ div#notebook {
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[234]:</div>
+    <div class="prompt output_prompt">Out[12]:</div>
 
 
 
@@ -14128,6 +14137,15 @@ div#notebook {
     </tr>
     <tr>
       <th>11</th>
+      <td>(US, price-2)</td>
+      <td>(points-17)</td>
+      <td>0.060757</td>
+      <td>0.570700</td>
+      <td>1.083154</td>
+      <td>0.115313</td>
+    </tr>
+    <tr>
+      <th>12</th>
       <td>(price-2, points-17)</td>
       <td>(US)</td>
       <td>0.060757</td>
@@ -14136,17 +14154,8 @@ div#notebook {
       <td>0.146960</td>
     </tr>
     <tr>
-      <th>12</th>
-      <td>(price-2, US)</td>
-      <td>(points-17)</td>
-      <td>0.060757</td>
-      <td>0.570700</td>
-      <td>1.083154</td>
-      <td>0.115313</td>
-    </tr>
-    <tr>
       <th>13</th>
-      <td>(price-1, US)</td>
+      <td>(US, price-1)</td>
       <td>(points-17)</td>
       <td>0.058424</td>
       <td>0.574949</td>
@@ -14209,16 +14218,7 @@ div#notebook {
     </tr>
     <tr>
       <th>20</th>
-      <td>(price-3, points-17)</td>
-      <td>(US)</td>
-      <td>0.038064</td>
-      <td>0.610715</td>
-      <td>1.477215</td>
-      <td>0.092070</td>
-    </tr>
-    <tr>
-      <th>21</th>
-      <td>(price-3, US)</td>
+      <td>(US, price-3)</td>
       <td>(points-17)</td>
       <td>0.038064</td>
       <td>0.495729</td>
@@ -14226,22 +14226,31 @@ div#notebook {
       <td>0.072243</td>
     </tr>
     <tr>
-      <th>22</th>
-      <td>(points-16, price-1)</td>
+      <th>21</th>
+      <td>(points-17, price-3)</td>
       <td>(US)</td>
-      <td>0.033936</td>
-      <td>0.427118</td>
-      <td>1.033125</td>
-      <td>0.082086</td>
+      <td>0.038064</td>
+      <td>0.610715</td>
+      <td>1.477215</td>
+      <td>0.092070</td>
     </tr>
     <tr>
-      <th>23</th>
-      <td>(points-16, US)</td>
+      <th>22</th>
+      <td>(US, points-16)</td>
       <td>(price-1)</td>
       <td>0.033936</td>
       <td>0.446245</td>
       <td>1.470723</td>
       <td>0.111846</td>
+    </tr>
+    <tr>
+      <th>23</th>
+      <td>(price-1, points-16)</td>
+      <td>(US)</td>
+      <td>0.033936</td>
+      <td>0.427118</td>
+      <td>1.033125</td>
+      <td>0.082086</td>
     </tr>
     <tr>
       <th>24</th>
@@ -14300,7 +14309,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[242]:</div>
+<div class="prompt input_prompt">In&nbsp;[13]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">final_rules</span> <span class="o">=</span> <span class="n">rules</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:]</span>
@@ -14322,7 +14331,7 @@ div#notebook {
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[242]:</div>
+    <div class="prompt output_prompt">Out[13]:</div>
 
 
 
@@ -14412,8 +14421,8 @@ div#notebook {
       <td>0.185727</td>
     </tr>
     <tr>
-      <th>23</th>
-      <td>(points-16, US)</td>
+      <th>22</th>
+      <td>(US, points-16)</td>
       <td>(price-1)</td>
       <td>0.076048</td>
       <td>0.303419</td>
@@ -14511,7 +14520,7 @@ div#notebook {
       <td>0.178338</td>
     </tr>
     <tr>
-      <th>11</th>
+      <th>12</th>
       <td>(price-2, points-17)</td>
       <td>(US)</td>
       <td>0.131604</td>
@@ -14523,7 +14532,7 @@ div#notebook {
     </tr>
     <tr>
       <th>13</th>
-      <td>(price-1, US)</td>
+      <td>(US, price-1)</td>
       <td>(points-17)</td>
       <td>0.101617</td>
       <td>0.526887</td>
@@ -14560,7 +14569,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[246]:</div>
+<div class="prompt input_prompt">In&nbsp;[14]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">i</span> <span class="o">=</span> <span class="mi">1</span>
@@ -14590,7 +14599,7 @@ div#notebook {
 3 : (&#39;price-4&#39;,) ⇒ (&#39;points-18&#39;,) (suupport = 0.043855, confidence = 0.529393 )
 4 : (&#39;points-16&#39;,) ⇒ (&#39;price-1&#39;,) (suupport = 0.079454, confidence = 0.516963 )
 5 : (&#39;price-3&#39;,) ⇒ (&#39;US&#39;,) (suupport = 0.076784, confidence = 0.616469 )
-6 : (&#39;points-16&#39;, &#39;US&#39;) ⇒ (&#39;price-1&#39;,) (suupport = 0.033936, confidence = 0.446245 )
+6 : (&#39;US&#39;, &#39;points-16&#39;) ⇒ (&#39;price-1&#39;,) (suupport = 0.033936, confidence = 0.446245 )
 7 : (&#39;price-10&#39;,) ⇒ (&#39;points-18&#39;,) (suupport = 0.051898, confidence = 0.439365 )
 8 : (&#39;price-4&#39;,) ⇒ (&#39;US&#39;,) (suupport = 0.049692, confidence = 0.599856 )
 9 : (&#39;price-3&#39;,) ⇒ (&#39;points-18&#39;,) (suupport = 0.049990, confidence = 0.401351 )
@@ -14600,7 +14609,7 @@ div#notebook {
 13 : (&#39;price-2&#39;,) ⇒ (&#39;points-17&#39;,) (suupport = 0.131604, confidence = 0.617900 )
 14 : (&#39;Italy&#39;,) ⇒ (&#39;points-17&#39;,) (suupport = 0.093964, confidence = 0.604055 )
 15 : (&#39;price-2&#39;, &#39;points-17&#39;) ⇒ (&#39;US&#39;,) (suupport = 0.060757, confidence = 0.461662 )
-16 : (&#39;price-1&#39;, &#39;US&#39;) ⇒ (&#39;points-17&#39;,) (suupport = 0.058424, confidence = 0.574949 )
+16 : (&#39;US&#39;, &#39;price-1&#39;) ⇒ (&#39;points-17&#39;,) (suupport = 0.058424, confidence = 0.574949 )
 </pre>
 </div>
 </div>
@@ -14664,7 +14673,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[258]:</div>
+<div class="prompt input_prompt">In&nbsp;[15]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span>  <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
@@ -14703,7 +14712,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[261]:</div>
+<div class="prompt input_prompt">In&nbsp;[16]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;support&#39;</span><span class="p">)</span>
@@ -14729,6 +14738,1670 @@ div#notebook {
 
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,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
+"
+>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="&#32771;&#34385;variety&#21644;winery&#23646;&#24615;&#30340;&#39057;&#32321;&#27169;&#24335;&#19982;&#20851;&#32852;&#35268;&#21017;&#25366;&#25496;">&#32771;&#34385;variety&#21644;winery&#23646;&#24615;&#30340;&#39057;&#32321;&#27169;&#24335;&#19982;&#20851;&#32852;&#35268;&#21017;&#25366;&#25496;<a class="anchor-link" href="#&#32771;&#34385;variety&#21644;winery&#23646;&#24615;&#30340;&#39057;&#32321;&#27169;&#24335;&#19982;&#20851;&#32852;&#35268;&#21017;&#25366;&#25496;">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="&#25968;&#25454;&#22788;&#29702;">&#25968;&#25454;&#22788;&#29702;<a class="anchor-link" href="#&#25968;&#25454;&#22788;&#29702;">&#182;</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[17]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">path_15k</span><span class="p">)</span>
+
+<span class="c1">#处理country的空值</span>
+<span class="n">country_nan_hander</span><span class="p">(</span><span class="n">df2</span><span class="p">)</span>
+
+<span class="c1">#过滤属性</span>
+<span class="n">df2</span> <span class="o">=</span> <span class="n">df2</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s1">&#39;Unnamed: 0&#39;</span><span class="p">,</span><span class="s1">&#39;description&#39;</span><span class="p">,</span><span class="s1">&#39;province&#39;</span><span class="p">,</span><span class="s1">&#39;region_1&#39;</span><span class="p">,</span><span class="s1">&#39;region_2&#39;</span><span class="p">,</span><span class="s1">&#39;designation&#39;</span><span class="p">],</span><span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="c1">#离散化处理</span>
+<span class="n">df2</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span><span class="s1">&#39;points&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df2</span><span class="p">[</span><span class="s1">&#39;points&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span><span class="n">points_discretization</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+<span class="n">df2</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span><span class="s1">&#39;price&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df2</span><span class="p">[</span><span class="s1">&#39;price&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span><span class="n">price_discretization</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[32]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#选取variety中出现频数大于4000的非空聚类所包括的行</span>
+<span class="n">variety_group</span> <span class="o">=</span> <span class="n">df2</span><span class="p">[</span><span class="s1">&#39;variety&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+<span class="n">variety_keys</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">variety_group</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+    <span class="k">if</span> <span class="n">variety_group</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">&gt;</span><span class="mi">4000</span><span class="p">:</span> <span class="n">variety_keys</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
+<span class="n">df2_v</span> <span class="o">=</span> <span class="n">df2</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df2</span><span class="p">[</span><span class="s1">&#39;variety&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">variety_keys</span><span class="p">)]</span>
+<span class="n">df2_v</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s1">&#39;winery&#39;</span><span class="p">],</span><span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span><span class="n">inplace</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[33]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#选取winery中出现频数大于200的非空聚类所包括的行</span>
+<span class="n">winery_group</span> <span class="o">=</span> <span class="n">df2</span><span class="p">[</span><span class="s1">&#39;winery&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+<span class="n">winery_keys</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">winery_group</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+    <span class="k">if</span> <span class="n">winery_group</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">&gt;</span><span class="mi">200</span><span class="p">:</span> <span class="n">winery_keys</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
+<span class="n">df2_w</span> <span class="o">=</span> <span class="n">df2</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df2</span><span class="p">[</span><span class="s1">&#39;winery&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">winery_keys</span><span class="p">)]</span>
+<span class="n">df2_w</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s1">&#39;variety&#39;</span><span class="p">],</span><span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span><span class="n">inplace</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[19]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#variety dataframe转换为列表</span>
+<span class="k">def</span> <span class="nf">deal</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">data</span><span class="o">.</span><span class="n">to_list</span><span class="p">()</span>
+<span class="n">df2_v_arr</span> <span class="o">=</span> <span class="n">df2_v</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">deal</span><span class="p">,</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+
+<span class="c1">#variety TransactionEncoder转换</span>
+<span class="n">te</span> <span class="o">=</span> <span class="n">TransactionEncoder</span><span class="p">()</span>
+<span class="n">tf</span> <span class="o">=</span> <span class="n">te</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">df2_v_arr</span><span class="p">)</span>
+<span class="n">new_df2_v</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">tf</span><span class="p">,</span><span class="n">columns</span><span class="o">=</span><span class="n">te</span><span class="o">.</span><span class="n">columns_</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[20]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#winery dataframe转换为列表</span>
+<span class="k">def</span> <span class="nf">deal</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">data</span><span class="o">.</span><span class="n">to_list</span><span class="p">()</span>
+<span class="n">df2_w_arr</span> <span class="o">=</span> <span class="n">df2_w</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">deal</span><span class="p">,</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+
+<span class="c1">#winery TransactionEncoder转换</span>
+<span class="n">te</span> <span class="o">=</span> <span class="n">TransactionEncoder</span><span class="p">()</span>
+<span class="n">tf</span> <span class="o">=</span> <span class="n">te</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">df2_w_arr</span><span class="p">)</span>
+<span class="n">new_df2_w</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">tf</span><span class="p">,</span><span class="n">columns</span><span class="o">=</span><span class="n">te</span><span class="o">.</span><span class="n">columns_</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="&#39057;&#32321;&#27169;&#24335;">&#39057;&#32321;&#27169;&#24335;<a class="anchor-link" href="#&#39057;&#32321;&#27169;&#24335;">&#182;</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>variety和其它属性的频繁模式，最小支持度阈值取0.05</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[21]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">variety_result</span> <span class="o">=</span> <span class="n">apriori</span><span class="p">(</span><span class="n">new_df2_v</span><span class="p">,</span> <span class="n">min_support</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">use_colnames</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">max_len</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s1">&#39;support&#39;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[22]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">variety_result</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[22]:</div>
+
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>support</th>
+      <th>itemsets</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>12</th>
+      <td>0.550311</td>
+      <td>(US)</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>0.493068</td>
+      <td>(points-17)</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>0.329475</td>
+      <td>(points-18)</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>0.261695</td>
+      <td>(price-1)</td>
+    </tr>
+    <tr>
+      <th>39</th>
+      <td>0.257547</td>
+      <td>(US, points-17)</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>0.208062</td>
+      <td>(price-2)</td>
+    </tr>
+    <tr>
+      <th>40</th>
+      <td>0.186770</td>
+      <td>(US, points-18)</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0.177213</td>
+      <td>(Chardonnay)</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>0.174875</td>
+      <td>(Pinot Noir)</td>
+    </tr>
+    <tr>
+      <th>46</th>
+      <td>0.166041</td>
+      <td>(points-17, price-1)</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0.156630</td>
+      <td>(Cabernet Sauvignon)</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>0.152103</td>
+      <td>(points-16)</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0.150206</td>
+      <td>(France)</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>0.143562</td>
+      <td>(price-3)</td>
+    </tr>
+    <tr>
+      <th>47</th>
+      <td>0.127275</td>
+      <td>(price-2, points-17)</td>
+    </tr>
+    <tr>
+      <th>33</th>
+      <td>0.126528</td>
+      <td>(US, Pinot Noir)</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>0.123126</td>
+      <td>(Red Blend)</td>
+    </tr>
+    <tr>
+      <th>42</th>
+      <td>0.123077</td>
+      <td>(US, price-2)</td>
+    </tr>
+    <tr>
+      <th>41</th>
+      <td>0.120654</td>
+      <td>(US, price-1)</td>
+    </tr>
+    <tr>
+      <th>23</th>
+      <td>0.112309</td>
+      <td>(US, Cabernet Sauvignon)</td>
+    </tr>
+    <tr>
+      <th>20</th>
+      <td>0.103841</td>
+      <td>(price-4)</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>0.103266</td>
+      <td>(price-10)</td>
+    </tr>
+    <tr>
+      <th>43</th>
+      <td>0.102825</td>
+      <td>(US, price-3)</td>
+    </tr>
+    <tr>
+      <th>26</th>
+      <td>0.099448</td>
+      <td>(US, Chardonnay)</td>
+    </tr>
+    <tr>
+      <th>38</th>
+      <td>0.091409</td>
+      <td>(US, points-16)</td>
+    </tr>
+    <tr>
+      <th>0</th>
+      <td>0.089903</td>
+      <td>(Bordeaux-style Red Blend)</td>
+    </tr>
+    <tr>
+      <th>27</th>
+      <td>0.088876</td>
+      <td>(points-17, Chardonnay)</td>
+    </tr>
+    <tr>
+      <th>34</th>
+      <td>0.082672</td>
+      <td>(points-17, Pinot Noir)</td>
+    </tr>
+    <tr>
+      <th>45</th>
+      <td>0.077557</td>
+      <td>(price-1, points-16)</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>0.077336</td>
+      <td>(Sauvignon Blanc)</td>
+    </tr>
+    <tr>
+      <th>44</th>
+      <td>0.076663</td>
+      <td>(US, price-4)</td>
+    </tr>
+    <tr>
+      <th>24</th>
+      <td>0.072588</td>
+      <td>(Cabernet Sauvignon, points-17)</td>
+    </tr>
+    <tr>
+      <th>48</th>
+      <td>0.071818</td>
+      <td>(points-17, price-3)</td>
+    </tr>
+    <tr>
+      <th>55</th>
+      <td>0.071683</td>
+      <td>(US, price-2, points-17)</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>0.071279</td>
+      <td>(Syrah)</td>
+    </tr>
+    <tr>
+      <th>54</th>
+      <td>0.069346</td>
+      <td>(US, points-17, price-1)</td>
+    </tr>
+    <tr>
+      <th>35</th>
+      <td>0.067987</td>
+      <td>(points-18, Pinot Noir)</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>0.067596</td>
+      <td>(Riesling)</td>
+    </tr>
+    <tr>
+      <th>30</th>
+      <td>0.066115</td>
+      <td>(France, points-17)</td>
+    </tr>
+    <tr>
+      <th>36</th>
+      <td>0.064622</td>
+      <td>(points-17, Red Blend)</td>
+    </tr>
+    <tr>
+      <th>31</th>
+      <td>0.064451</td>
+      <td>(France, points-18)</td>
+    </tr>
+    <tr>
+      <th>21</th>
+      <td>0.063460</td>
+      <td>(price-5)</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>0.062921</td>
+      <td>(Italy)</td>
+    </tr>
+    <tr>
+      <th>32</th>
+      <td>0.062261</td>
+      <td>(France, price-10)</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>0.062040</td>
+      <td>(Merlot)</td>
+    </tr>
+    <tr>
+      <th>22</th>
+      <td>0.060694</td>
+      <td>(France, Bordeaux-style Red Blend)</td>
+    </tr>
+    <tr>
+      <th>50</th>
+      <td>0.057782</td>
+      <td>(points-18, price-3)</td>
+    </tr>
+    <tr>
+      <th>52</th>
+      <td>0.056876</td>
+      <td>(US, points-17, Pinot Noir)</td>
+    </tr>
+    <tr>
+      <th>29</th>
+      <td>0.056093</td>
+      <td>(Chardonnay, price-1)</td>
+    </tr>
+    <tr>
+      <th>51</th>
+      <td>0.054943</td>
+      <td>(points-18, price-4)</td>
+    </tr>
+    <tr>
+      <th>49</th>
+      <td>0.053230</td>
+      <td>(price-10, points-18)</td>
+    </tr>
+    <tr>
+      <th>28</th>
+      <td>0.052887</td>
+      <td>(Chardonnay, points-18)</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0.052851</td>
+      <td>(Chile)</td>
+    </tr>
+    <tr>
+      <th>25</th>
+      <td>0.052337</td>
+      <td>(Cabernet Sauvignon, points-18)</td>
+    </tr>
+    <tr>
+      <th>37</th>
+      <td>0.052300</td>
+      <td>(Syrah, US)</td>
+    </tr>
+    <tr>
+      <th>53</th>
+      <td>0.052080</td>
+      <td>(US, points-18, Pinot Noir)</td>
+    </tr>
+    <tr>
+      <th>56</th>
+      <td>0.050966</td>
+      <td>(US, points-17, price-3)</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>winery和其它属性的频繁模式，最小支持度阈值取0.05</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[23]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">winery_result</span> <span class="o">=</span> <span class="n">apriori</span><span class="p">(</span><span class="n">new_df2_w</span><span class="p">,</span> <span class="n">min_support</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">use_colnames</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">max_len</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s1">&#39;support&#39;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[24]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">winery_result</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[24]:</div>
+
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>support</th>
+      <th>itemsets</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>12</th>
+      <td>0.596892</td>
+      <td>(US)</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>0.462523</td>
+      <td>(points-17)</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>0.387569</td>
+      <td>(points-18)</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>0.272852</td>
+      <td>(price-1)</td>
+    </tr>
+    <tr>
+      <th>49</th>
+      <td>0.271024</td>
+      <td>(US, points-18)</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>26</th>
+      <td>0.051645</td>
+      <td>(Argentina, points-17)</td>
+    </tr>
+    <tr>
+      <th>71</th>
+      <td>0.051645</td>
+      <td>(US, Testarossa, price-5)</td>
+    </tr>
+    <tr>
+      <th>45</th>
+      <td>0.051645</td>
+      <td>(points-17, Trapiche)</td>
+    </tr>
+    <tr>
+      <th>44</th>
+      <td>0.051645</td>
+      <td>(Testarossa, price-5)</td>
+    </tr>
+    <tr>
+      <th>63</th>
+      <td>0.051645</td>
+      <td>(Argentina, points-17, Trapiche)</td>
+    </tr>
+  </tbody>
+</table>
+<p>77 rows × 2 columns</p>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="&#23548;&#20986;&#20851;&#32852;&#35268;&#21017;/&#35268;&#21017;&#35780;&#20215;">&#23548;&#20986;&#20851;&#32852;&#35268;&#21017;/&#35268;&#21017;&#35780;&#20215;<a class="anchor-link" href="#&#23548;&#20986;&#20851;&#32852;&#35268;&#21017;/&#35268;&#21017;&#35780;&#20215;">&#182;</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>然后从频繁项集中导出关联规则，并计算其支持度和置信度，支持度阈值为0.05，置信度阈值设为0.1，方法默认状态下会计算关联规则的计算支持度、置信度和提升度,此外额外计算规则的全置信度。</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[25]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#variety 关联规则导出</span>
+<span class="n">rules_v</span> <span class="o">=</span>  <span class="n">association_rules</span><span class="p">(</span><span class="n">variety_result</span><span class="p">,</span><span class="n">metric</span> <span class="o">=</span><span class="s1">&#39;confidence&#39;</span><span class="p">,</span><span class="n">min_threshold</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">)</span>
+<span class="n">rules_v</span> <span class="o">=</span> <span class="n">rules_v</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s1">&#39;leverage&#39;</span><span class="p">,</span><span class="s1">&#39;conviction&#39;</span><span class="p">],</span><span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="n">allconf_list</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">rules_v</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
+    <span class="n">allconf_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">allconf</span><span class="p">(</span><span class="n">row</span><span class="p">))</span>
+<span class="n">rules_v</span><span class="p">[</span><span class="s1">&#39;allconf&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">allconf_list</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">rules_v</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="n">rules_v</span><span class="p">[:]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>(26, 8)
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[25]:</div>
+
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>antecedents</th>
+      <th>consequents</th>
+      <th>antecedent support</th>
+      <th>consequent support</th>
+      <th>support</th>
+      <th>confidence</th>
+      <th>lift</th>
+      <th>allconf</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>(points-17)</td>
+      <td>(US)</td>
+      <td>0.493068</td>
+      <td>0.550311</td>
+      <td>0.257547</td>
+      <td>0.522336</td>
+      <td>0.949164</td>
+      <td>0.468002</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>(points-18)</td>
+      <td>(US)</td>
+      <td>0.329475</td>
+      <td>0.550311</td>
+      <td>0.186770</td>
+      <td>0.566871</td>
+      <td>1.030091</td>
+      <td>0.339389</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>(price-1)</td>
+      <td>(points-17)</td>
+      <td>0.261695</td>
+      <td>0.493068</td>
+      <td>0.166041</td>
+      <td>0.634481</td>
+      <td>1.286802</td>
+      <td>0.336750</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>(price-2)</td>
+      <td>(points-17)</td>
+      <td>0.208062</td>
+      <td>0.493068</td>
+      <td>0.127275</td>
+      <td>0.611716</td>
+      <td>1.240632</td>
+      <td>0.258128</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>(Pinot Noir)</td>
+      <td>(US)</td>
+      <td>0.174875</td>
+      <td>0.550311</td>
+      <td>0.126528</td>
+      <td>0.723532</td>
+      <td>1.314769</td>
+      <td>0.229921</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>(price-2)</td>
+      <td>(US)</td>
+      <td>0.208062</td>
+      <td>0.550311</td>
+      <td>0.123077</td>
+      <td>0.591543</td>
+      <td>1.074923</td>
+      <td>0.223650</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>(Cabernet Sauvignon)</td>
+      <td>(US)</td>
+      <td>0.156630</td>
+      <td>0.550311</td>
+      <td>0.112309</td>
+      <td>0.717031</td>
+      <td>1.302955</td>
+      <td>0.204083</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>(price-3)</td>
+      <td>(US)</td>
+      <td>0.143562</td>
+      <td>0.550311</td>
+      <td>0.102825</td>
+      <td>0.716246</td>
+      <td>1.301529</td>
+      <td>0.186850</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>(Chardonnay)</td>
+      <td>(US)</td>
+      <td>0.177213</td>
+      <td>0.550311</td>
+      <td>0.099448</td>
+      <td>0.561179</td>
+      <td>1.019749</td>
+      <td>0.180712</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>(points-16)</td>
+      <td>(US)</td>
+      <td>0.152103</td>
+      <td>0.550311</td>
+      <td>0.091409</td>
+      <td>0.600965</td>
+      <td>1.092046</td>
+      <td>0.166103</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>(Chardonnay)</td>
+      <td>(points-17)</td>
+      <td>0.177213</td>
+      <td>0.493068</td>
+      <td>0.088876</td>
+      <td>0.501519</td>
+      <td>1.017140</td>
+      <td>0.180250</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>(points-16)</td>
+      <td>(price-1)</td>
+      <td>0.152103</td>
+      <td>0.261695</td>
+      <td>0.077557</td>
+      <td>0.509895</td>
+      <td>1.948432</td>
+      <td>0.296362</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>(price-4)</td>
+      <td>(US)</td>
+      <td>0.103841</td>
+      <td>0.550311</td>
+      <td>0.076663</td>
+      <td>0.738275</td>
+      <td>1.341558</td>
+      <td>0.139309</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>(price-3)</td>
+      <td>(points-17)</td>
+      <td>0.143562</td>
+      <td>0.493068</td>
+      <td>0.071818</td>
+      <td>0.500256</td>
+      <td>1.014578</td>
+      <td>0.145654</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>(US, price-2)</td>
+      <td>(points-17)</td>
+      <td>0.123077</td>
+      <td>0.493068</td>
+      <td>0.071683</td>
+      <td>0.582422</td>
+      <td>1.181221</td>
+      <td>0.145381</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>(price-2, points-17)</td>
+      <td>(US)</td>
+      <td>0.127275</td>
+      <td>0.550311</td>
+      <td>0.071683</td>
+      <td>0.563215</td>
+      <td>1.023448</td>
+      <td>0.130259</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>(US, price-1)</td>
+      <td>(points-17)</td>
+      <td>0.120654</td>
+      <td>0.493068</td>
+      <td>0.069346</td>
+      <td>0.574746</td>
+      <td>1.165654</td>
+      <td>0.140641</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>(Red Blend)</td>
+      <td>(points-17)</td>
+      <td>0.123126</td>
+      <td>0.493068</td>
+      <td>0.064622</td>
+      <td>0.524846</td>
+      <td>1.064450</td>
+      <td>0.131062</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>(price-10)</td>
+      <td>(France)</td>
+      <td>0.103266</td>
+      <td>0.150206</td>
+      <td>0.062261</td>
+      <td>0.602915</td>
+      <td>4.013916</td>
+      <td>0.414501</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>(Bordeaux-style Red Blend)</td>
+      <td>(France)</td>
+      <td>0.089903</td>
+      <td>0.150206</td>
+      <td>0.060694</td>
+      <td>0.675105</td>
+      <td>4.494525</td>
+      <td>0.404073</td>
+    </tr>
+    <tr>
+      <th>20</th>
+      <td>(points-17, Pinot Noir)</td>
+      <td>(US)</td>
+      <td>0.082672</td>
+      <td>0.550311</td>
+      <td>0.056876</td>
+      <td>0.687981</td>
+      <td>1.250167</td>
+      <td>0.103353</td>
+    </tr>
+    <tr>
+      <th>21</th>
+      <td>(price-4)</td>
+      <td>(points-18)</td>
+      <td>0.103841</td>
+      <td>0.329475</td>
+      <td>0.054943</td>
+      <td>0.529107</td>
+      <td>1.605910</td>
+      <td>0.166760</td>
+    </tr>
+    <tr>
+      <th>22</th>
+      <td>(price-10)</td>
+      <td>(points-18)</td>
+      <td>0.103266</td>
+      <td>0.329475</td>
+      <td>0.053230</td>
+      <td>0.515464</td>
+      <td>1.564502</td>
+      <td>0.161560</td>
+    </tr>
+    <tr>
+      <th>23</th>
+      <td>(Syrah)</td>
+      <td>(US)</td>
+      <td>0.071279</td>
+      <td>0.550311</td>
+      <td>0.052300</td>
+      <td>0.733734</td>
+      <td>1.333307</td>
+      <td>0.095037</td>
+    </tr>
+    <tr>
+      <th>24</th>
+      <td>(points-18, Pinot Noir)</td>
+      <td>(US)</td>
+      <td>0.067987</td>
+      <td>0.550311</td>
+      <td>0.052080</td>
+      <td>0.766019</td>
+      <td>1.391973</td>
+      <td>0.094637</td>
+    </tr>
+    <tr>
+      <th>25</th>
+      <td>(points-17, price-3)</td>
+      <td>(US)</td>
+      <td>0.071818</td>
+      <td>0.550311</td>
+      <td>0.050966</td>
+      <td>0.709661</td>
+      <td>1.289562</td>
+      <td>0.092613</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[26]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#winery 关联规则导出</span>
+<span class="n">rules_w</span> <span class="o">=</span>  <span class="n">association_rules</span><span class="p">(</span><span class="n">winery_result</span><span class="p">,</span><span class="n">metric</span> <span class="o">=</span><span class="s1">&#39;confidence&#39;</span><span class="p">,</span><span class="n">min_threshold</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">)</span>
+<span class="n">rules_w</span> <span class="o">=</span> <span class="n">rules_w</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s1">&#39;leverage&#39;</span><span class="p">,</span><span class="s1">&#39;conviction&#39;</span><span class="p">],</span><span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="n">allconf_list</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">rules_w</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
+    <span class="n">allconf_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">allconf</span><span class="p">(</span><span class="n">row</span><span class="p">))</span>
+<span class="n">rules_w</span><span class="p">[</span><span class="s1">&#39;allconf&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">allconf_list</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">rules_w</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>(88, 8)
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="&#32467;&#26524;&#20998;&#26512;/&#21487;&#35270;&#21270;">&#32467;&#26524;&#20998;&#26512;/&#21487;&#35270;&#21270;<a class="anchor-link" href="#&#32467;&#26524;&#20998;&#26512;/&#21487;&#35270;&#21270;">&#182;</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>在variety和其它属性（price、points和country）导出的关联规则中，列出提升度前20条规则。</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[27]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">rules_v</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s1">&#39;lift&#39;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)[:</span><span class="mi">20</span><span class="p">]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[27]:</div>
+
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>antecedents</th>
+      <th>consequents</th>
+      <th>antecedent support</th>
+      <th>consequent support</th>
+      <th>support</th>
+      <th>confidence</th>
+      <th>lift</th>
+      <th>allconf</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>19</th>
+      <td>(Bordeaux-style Red Blend)</td>
+      <td>(France)</td>
+      <td>0.089903</td>
+      <td>0.150206</td>
+      <td>0.060694</td>
+      <td>0.675105</td>
+      <td>4.494525</td>
+      <td>0.404073</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>(price-10)</td>
+      <td>(France)</td>
+      <td>0.103266</td>
+      <td>0.150206</td>
+      <td>0.062261</td>
+      <td>0.602915</td>
+      <td>4.013916</td>
+      <td>0.414501</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>(points-16)</td>
+      <td>(price-1)</td>
+      <td>0.152103</td>
+      <td>0.261695</td>
+      <td>0.077557</td>
+      <td>0.509895</td>
+      <td>1.948432</td>
+      <td>0.296362</td>
+    </tr>
+    <tr>
+      <th>21</th>
+      <td>(price-4)</td>
+      <td>(points-18)</td>
+      <td>0.103841</td>
+      <td>0.329475</td>
+      <td>0.054943</td>
+      <td>0.529107</td>
+      <td>1.605910</td>
+      <td>0.166760</td>
+    </tr>
+    <tr>
+      <th>22</th>
+      <td>(price-10)</td>
+      <td>(points-18)</td>
+      <td>0.103266</td>
+      <td>0.329475</td>
+      <td>0.053230</td>
+      <td>0.515464</td>
+      <td>1.564502</td>
+      <td>0.161560</td>
+    </tr>
+    <tr>
+      <th>24</th>
+      <td>(points-18, Pinot Noir)</td>
+      <td>(US)</td>
+      <td>0.067987</td>
+      <td>0.550311</td>
+      <td>0.052080</td>
+      <td>0.766019</td>
+      <td>1.391973</td>
+      <td>0.094637</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>(price-4)</td>
+      <td>(US)</td>
+      <td>0.103841</td>
+      <td>0.550311</td>
+      <td>0.076663</td>
+      <td>0.738275</td>
+      <td>1.341558</td>
+      <td>0.139309</td>
+    </tr>
+    <tr>
+      <th>23</th>
+      <td>(Syrah)</td>
+      <td>(US)</td>
+      <td>0.071279</td>
+      <td>0.550311</td>
+      <td>0.052300</td>
+      <td>0.733734</td>
+      <td>1.333307</td>
+      <td>0.095037</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>(Pinot Noir)</td>
+      <td>(US)</td>
+      <td>0.174875</td>
+      <td>0.550311</td>
+      <td>0.126528</td>
+      <td>0.723532</td>
+      <td>1.314769</td>
+      <td>0.229921</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>(Cabernet Sauvignon)</td>
+      <td>(US)</td>
+      <td>0.156630</td>
+      <td>0.550311</td>
+      <td>0.112309</td>
+      <td>0.717031</td>
+      <td>1.302955</td>
+      <td>0.204083</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>(price-3)</td>
+      <td>(US)</td>
+      <td>0.143562</td>
+      <td>0.550311</td>
+      <td>0.102825</td>
+      <td>0.716246</td>
+      <td>1.301529</td>
+      <td>0.186850</td>
+    </tr>
+    <tr>
+      <th>25</th>
+      <td>(points-17, price-3)</td>
+      <td>(US)</td>
+      <td>0.071818</td>
+      <td>0.550311</td>
+      <td>0.050966</td>
+      <td>0.709661</td>
+      <td>1.289562</td>
+      <td>0.092613</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>(price-1)</td>
+      <td>(points-17)</td>
+      <td>0.261695</td>
+      <td>0.493068</td>
+      <td>0.166041</td>
+      <td>0.634481</td>
+      <td>1.286802</td>
+      <td>0.336750</td>
+    </tr>
+    <tr>
+      <th>20</th>
+      <td>(points-17, Pinot Noir)</td>
+      <td>(US)</td>
+      <td>0.082672</td>
+      <td>0.550311</td>
+      <td>0.056876</td>
+      <td>0.687981</td>
+      <td>1.250167</td>
+      <td>0.103353</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>(price-2)</td>
+      <td>(points-17)</td>
+      <td>0.208062</td>
+      <td>0.493068</td>
+      <td>0.127275</td>
+      <td>0.611716</td>
+      <td>1.240632</td>
+      <td>0.258128</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>(US, price-2)</td>
+      <td>(points-17)</td>
+      <td>0.123077</td>
+      <td>0.493068</td>
+      <td>0.071683</td>
+      <td>0.582422</td>
+      <td>1.181221</td>
+      <td>0.145381</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>(US, price-1)</td>
+      <td>(points-17)</td>
+      <td>0.120654</td>
+      <td>0.493068</td>
+      <td>0.069346</td>
+      <td>0.574746</td>
+      <td>1.165654</td>
+      <td>0.140641</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>(points-16)</td>
+      <td>(US)</td>
+      <td>0.152103</td>
+      <td>0.550311</td>
+      <td>0.091409</td>
+      <td>0.600965</td>
+      <td>1.092046</td>
+      <td>0.166103</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>(price-2)</td>
+      <td>(US)</td>
+      <td>0.208062</td>
+      <td>0.550311</td>
+      <td>0.123077</td>
+      <td>0.591543</td>
+      <td>1.074923</td>
+      <td>0.223650</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>(Red Blend)</td>
+      <td>(points-17)</td>
+      <td>0.123126</td>
+      <td>0.493068</td>
+      <td>0.064622</td>
+      <td>0.524846</td>
+      <td>1.064450</td>
+      <td>0.131062</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>(Bordeaux-style Red Blend)→(France)   可以看出Bordeaux-style Red Blend品种的葡萄大都种植在法国</li>
+<li>(Syrah)→(US)、 (Pinot Noir)→(US)、(Cabernet Sauvignon)→(US)  Syrah、Pinot Noir和Cabernet Sauvignon品种的葡萄大都种植在美国</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>在winery和其它属性（price、points和country）导出的关联规则中，列出提升度前30条规则。</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[28]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">rules_w</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s1">&#39;lift&#39;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)[:</span><span class="mi">12</span><span class="p">]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[28]:</div>
+
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>antecedents</th>
+      <th>consequents</th>
+      <th>antecedent support</th>
+      <th>consequent support</th>
+      <th>support</th>
+      <th>confidence</th>
+      <th>lift</th>
+      <th>allconf</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>24</th>
+      <td>(Bouchard Père &amp; Fils)</td>
+      <td>(France)</td>
+      <td>0.092779</td>
+      <td>0.092779</td>
+      <td>0.092779</td>
+      <td>1.000000</td>
+      <td>10.778325</td>
+      <td>1.000000</td>
+    </tr>
+    <tr>
+      <th>23</th>
+      <td>(France)</td>
+      <td>(Bouchard Père &amp; Fils)</td>
+      <td>0.092779</td>
+      <td>0.092779</td>
+      <td>0.092779</td>
+      <td>1.000000</td>
+      <td>10.778325</td>
+      <td>1.000000</td>
+    </tr>
+    <tr>
+      <th>87</th>
+      <td>(Trapiche)</td>
+      <td>(Argentina, points-17)</td>
+      <td>0.093693</td>
+      <td>0.051645</td>
+      <td>0.051645</td>
+      <td>0.551220</td>
+      <td>10.673171</td>
+      <td>0.551220</td>
+    </tr>
+    <tr>
+      <th>85</th>
+      <td>(points-17, Trapiche)</td>
+      <td>(Argentina)</td>
+      <td>0.051645</td>
+      <td>0.093693</td>
+      <td>0.051645</td>
+      <td>1.000000</td>
+      <td>10.673171</td>
+      <td>0.551220</td>
+    </tr>
+    <tr>
+      <th>21</th>
+      <td>(Argentina)</td>
+      <td>(Trapiche)</td>
+      <td>0.093693</td>
+      <td>0.093693</td>
+      <td>0.093693</td>
+      <td>1.000000</td>
+      <td>10.673171</td>
+      <td>1.000000</td>
+    </tr>
+    <tr>
+      <th>83</th>
+      <td>(Argentina, points-17)</td>
+      <td>(Trapiche)</td>
+      <td>0.051645</td>
+      <td>0.093693</td>
+      <td>0.051645</td>
+      <td>1.000000</td>
+      <td>10.673171</td>
+      <td>0.551220</td>
+    </tr>
+    <tr>
+      <th>78</th>
+      <td>(Trapiche)</td>
+      <td>(Argentina, price-1)</td>
+      <td>0.093693</td>
+      <td>0.054388</td>
+      <td>0.054388</td>
+      <td>0.580488</td>
+      <td>10.673171</td>
+      <td>0.580488</td>
+    </tr>
+    <tr>
+      <th>77</th>
+      <td>(Argentina)</td>
+      <td>(price-1, Trapiche)</td>
+      <td>0.093693</td>
+      <td>0.054388</td>
+      <td>0.054388</td>
+      <td>0.580488</td>
+      <td>10.673171</td>
+      <td>0.580488</td>
+    </tr>
+    <tr>
+      <th>76</th>
+      <td>(price-1, Trapiche)</td>
+      <td>(Argentina)</td>
+      <td>0.054388</td>
+      <td>0.093693</td>
+      <td>0.054388</td>
+      <td>1.000000</td>
+      <td>10.673171</td>
+      <td>0.580488</td>
+    </tr>
+    <tr>
+      <th>22</th>
+      <td>(Trapiche)</td>
+      <td>(Argentina)</td>
+      <td>0.093693</td>
+      <td>0.093693</td>
+      <td>0.093693</td>
+      <td>1.000000</td>
+      <td>10.673171</td>
+      <td>1.000000</td>
+    </tr>
+    <tr>
+      <th>86</th>
+      <td>(Argentina)</td>
+      <td>(points-17, Trapiche)</td>
+      <td>0.093693</td>
+      <td>0.051645</td>
+      <td>0.051645</td>
+      <td>0.551220</td>
+      <td>10.673171</td>
+      <td>0.551220</td>
+    </tr>
+    <tr>
+      <th>74</th>
+      <td>(Argentina, price-1)</td>
+      <td>(Trapiche)</td>
+      <td>0.054388</td>
+      <td>0.093693</td>
+      <td>0.054388</td>
+      <td>1.000000</td>
+      <td>10.673171</td>
+      <td>0.580488</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>(France)→(Bouchard Père &amp; Fils)，Bouchard Père &amp; Fils是法国比较普遍的葡萄酒庄园</li>
+<li>(Trapiche)→(Argentina)和(Argentina)→(Trapiche) Trapiche是阿根廷比较普遍的葡萄酒庄园</li>
+<li>(Trapiche)→(Argentina, price-1) Trapiche葡萄酒庄园的葡萄酒价格较为便宜(价格区间在11-19之间)</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>variety和其它属性关联规则可视化</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[29]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span>  <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;support&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;confidence&#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">rules_v</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">rules_v</span><span class="o">.</span><span class="n">support</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">rules_v</span><span class="o">.</span><span class="n">confidence</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">c</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+
+
+<div class="output_png output_subarea ">
+<img src="data:image/png;base64,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
+"
+>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>winery和其它属性关联规则可视化</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[30]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span>  <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;support&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;confidence&#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">rules_w</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">rules_w</span><span class="o">.</span><span class="n">support</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">rules_w</span><span class="o">.</span><span class="n">confidence</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">c</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+
+
+<div class="output_png output_subarea ">
+<img src="data:image/png;base64,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
 "
 >
 </div>
