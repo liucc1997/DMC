@@ -1,6 +1,9 @@
 
 
-## 频繁模式与关联规则挖掘 [点击](https://github.com/liucc1997/DMC/tree/master/assignment2)
+## 作业2 频繁模式与关联规则挖掘 [点击](https://github.com/liucc1997/DMC/tree/master/assignment2)
+
+
+## 作业3 分类与预测 [点击](https://github.com/liucc1997/DMC/tree/master/assignment3)
 
 
 
