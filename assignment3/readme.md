@@ -1,9 +1,9 @@
 ## 数据挖掘互评作业三：分类与预测 
 3220190840 刘聪聪
 
-### 所选数据集
+### 数据集
 
-[wine-reviews](https://www.kaggle.com/zynicide/wine-reviews)
+[Video Game Sales](https://www.kaggle.com/gregorut/videogamesales)
 
 
 ### 分析过程报告
