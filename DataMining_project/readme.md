@@ -19,12 +19,12 @@
 
 - 使用回归决策树模型
 - 训练集中，根据creatDates和creatDates计算得到used_time
-- 作为特征的属性包括;
-    ["bodyType","brand","fuelType","gearbox","kilometer",
-    'model', 'notRepairedDamage', 'power', 'regDate',
-    'v_0', 'v_1', 'v_10', 'v_11', 'v_12', 'v_13', 'v_14',
-    'v_2', 'v_3', 'v_4', 'v_5', 'v_6', 'v_7', 'v_8', 'v_9', 
-    'name_count','used_time']
+- 作为特征的属性包括:
+
+    ["bodyType","brand","fuelType","gearbox","kilometer",'model', 'notRepairedDamage', 'power', 'regDate',
+    
+    'v_0'- 'v_9', 'name_count','used_time']
+ 
 - 训练集80%的数据用于训练，20%用于评价模型，使用AE和决定系数R^2评价模型
 - 最后使用模型预测测试集，结果保存在output/algo2_predict.csv文件中
 
