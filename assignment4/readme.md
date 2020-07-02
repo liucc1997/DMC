@@ -13,6 +13,5 @@
 
 [.html](https://github.com/liucc1997/DMC/blob/master/assignment4/assignment4.html)
 
-[skin数据集的分析报告]
-(https://github.com/liucc1997/DMC/blob/master/assignment4/assignment4.ipynb)
-[.html](https://github.com/liucc1997/DMC/blob/master/assignment4/assignment4.html)
+### skin数据集的分析报告
+[.ipynb](https://github.com/liucc1997/DMC/blob/master/assignment4/assignment4.ipynb) [.html](https://github.com/liucc1997/DMC/blob/master/assignment4/assignment4.html)
