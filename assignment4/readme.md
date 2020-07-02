@@ -7,11 +7,10 @@
 
 [skin](https://ir.library.oregonstate.edu/concern/parent/47429f155/file_sets/sq87c051d)
 
-### 分析过程报告
 
-[Jupyter notebook 项目文件](https://github.com/liucc1997/DMC/blob/master/assignment4/assignment4.ipynb)
+### skin数据集的分析报告
 
-[.html](https://github.com/liucc1997/DMC/blob/master/assignment4/assignment4.html)
+[.ipynb](https://github.com/liucc1997/DMC/blob/master/assignment4/assignment4_wine.ipynb) [.html](https://github.com/liucc1997/DMC/blob/master/assignment4/assignment4_wine.html)
 
 ### skin数据集的分析报告
 [.ipynb](https://github.com/liucc1997/DMC/blob/master/assignment4/assignment4.ipynb) [.html](https://github.com/liucc1997/DMC/blob/master/assignment4/assignment4.html)
