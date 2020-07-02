@@ -2,4 +2,7 @@ data/*.zip
 data/*/
 data/*.csv
 .ipynb_checkpoints/
+test/*
+test/*/
+
 

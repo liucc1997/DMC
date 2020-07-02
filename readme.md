@@ -5,7 +5,7 @@
 
 ## 作业3 分类与预测 [点击](https://github.com/liucc1997/DMC/tree/master/assignment3)
 
-
+## 作业4 离群点分析与异常检测 [点击](https://github.com/liucc1997/DMC/tree/master/assignment4)
 
 
 
