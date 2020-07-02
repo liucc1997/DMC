@@ -1,0 +1,5 @@
+data/*.zip
+data/*/
+.ipynb_checkpoints/
+test/*
+test/*/
