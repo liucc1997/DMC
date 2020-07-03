@@ -2,7 +2,7 @@
 ## 算法2 随机森林回归器和GBDT模型
 
 ### 代码/报告
-[algorithm2.ipynb](algorithm2_decision_tree.ipynb)
+[algorithm2.ipynb](algorithm2.ipynb)
 
 ### 说明
 
